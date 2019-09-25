@@ -5,6 +5,10 @@
  */
 package view;
 
+import dao.CidadeDAO;
+import javax.swing.JOptionPane;
+import model.Cidade;
+
 /**
  *
  * @author 631710290
@@ -56,6 +60,11 @@ public class FrmCidade extends javax.swing.JInternalFrame {
 
         btnSalvar.setBackground(new java.awt.Color(194, 189, 160));
         btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         jDesktopPane1.setLayer(lblCodigo, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(lblCodigoValor, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -111,6 +120,18 @@ public class FrmCidade extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        String nome = txtNome.getText();
+        if (nome.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Campo Nome é obrigatório.");
+        }else{
+            Cidade cid = new Cidade();
+            cid.setNome(nome);
+            CidadeDAO.inserir(cid);
+            txtNome.setText("");
+        }
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

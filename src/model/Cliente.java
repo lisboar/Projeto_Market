@@ -1,10 +1,28 @@
 package model;
 
+/**
+ *
+ * @author assparremberger
+ */
 public class Cliente {
+    
+    public static final String PESSOA_FISICA = "pf";
+    public static final String PESSOA_JURIDICA = "pj";
+    
     private int id;
-    private String nome, email;
+    private String nome, email, tipo;
     private boolean receberEmail;
     private Cidade cidade;
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -48,4 +66,12 @@ public class Cliente {
     
     
     
+    
+    
+    
+    
 }
+
+
+
+
