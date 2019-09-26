@@ -26,7 +26,7 @@ public class Conexao {
                 DriverManager.getConnection(URL,USER,SENHA);
             Statement st = conn.createStatement();
             st.execute( query );
-            conn.close();
+            //conn.close();
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog
@@ -42,7 +42,7 @@ public class Conexao {
                 DriverManager.getConnection(URL,USER,SENHA);
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery( query );
-            conn.close();
+            //conn.close();
             return rs;
         } catch (Exception e) {
             JOptionPane.showMessageDialog

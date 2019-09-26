@@ -38,10 +38,9 @@ public class FrmCidade extends javax.swing.JInternalFrame {
         txtNome = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(51, 51, 255));
+        setBorder(null);
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
         setTitle("Formulário de CIdade");
 
         jDesktopPane1.setBackground(new java.awt.Color(204, 204, 255));
@@ -104,7 +103,7 @@ public class FrmCidade extends javax.swing.JInternalFrame {
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(62, 62, 62)
                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

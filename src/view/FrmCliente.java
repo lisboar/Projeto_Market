@@ -5,6 +5,12 @@
  */
 package view;
 
+import dao.CidadeDAO;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import model.Cidade;
+
 /**
  *
  * @author 631710290
@@ -16,6 +22,33 @@ public class FrmCliente extends javax.swing.JInternalFrame {
      */
     public FrmCliente() {
         initComponents();
+        esconder();
+        carregarCidades();
+    }
+    
+    private void esconder(){
+        lblCPF.setVisible(false);
+        txtCPF.setVisible(false);
+        lblCNPJ.setVisible(false);
+        txtCNPJ.setVisible(false);
+        
+    }
+    
+     private void carregarCidades(){
+        
+        List<Cidade> listaCidades = 
+                CidadeDAO.getCidades();
+        DefaultComboBoxModel model = 
+                new DefaultComboBoxModel();
+        Cidade fake = new Cidade();
+        fake.setId(0);
+        fake.setNome("Selecione...");
+        model.addElement( fake );
+        for (Cidade cid : listaCidades) {
+            model.addElement( cid );
+        }
+        cmbCidade.setModel( model );
+        
     }
 
     /**
@@ -74,6 +107,11 @@ public class FrmCliente extends javax.swing.JInternalFrame {
 
         buttonGroupTipo.add(rbPF);
         rbPF.setText("Pessoa Física");
+        rbPF.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rbPFItemStateChanged(evt);
+            }
+        });
 
         buttonGroupTipo.add(rbPJ);
         rbPJ.setText("Pessoa Jurídica");
@@ -103,6 +141,11 @@ public class FrmCliente extends javax.swing.JInternalFrame {
 
         btnSalvar.setBackground(new java.awt.Color(153, 255, 102));
         btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setBackground(new java.awt.Color(255, 204, 102));
         btnLimpar.setText("Limpar");
@@ -209,6 +252,51 @@ public class FrmCliente extends javax.swing.JInternalFrame {
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        String erro = "";
+        String nome = txtNome.getText();
+        Cidade cid = (Cidade) cmbCidade.getSelectedItem();
+        if (nome.isEmpty()){
+            erro += "Nome\n";
+        }
+        if (cid.getId()==0){
+            erro +="Cidade\n";
+        }
+        String cpf_cnpj ="";
+        if (rbPF.isSelected()){
+            cpf_cnpj = txtCPF.getText();
+            if (cpf_cnpj.substring(13).equals(" ")){
+                erro += "CPF\n";
+            }
+        }
+        if (rbPJ.isSelected()){
+            cpf_cnpj = txtCNPJ.getText();
+            if (cpf_cnpj.substring(17).equals(" ")){
+                erro += "CNPJ\n";
+            }
+        }
+        
+        if (! erro.isEmpty()){
+            JOptionPane.showMessageDialog(this,"É obrigatório o preenchimento do campo " + erro);
+        }else{
+            
+        }
+        
+    }//GEN-LAST:event_btnSalvarActionPerformed
+   
+    private void rbPFItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rbPFItemStateChanged
+        esconder();
+        if (rbPF.isSelected()){
+            lblCPF.setVisible(true);
+            txtCPF.setVisible(true);
+        }
+        else{
+            lblCNPJ.setVisible(true);
+            txtCNPJ.setVisible(true);
+            
+        }
+    }//GEN-LAST:event_rbPFItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
