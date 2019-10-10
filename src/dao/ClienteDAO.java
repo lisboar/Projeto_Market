@@ -33,7 +33,6 @@ public class ClienteDAO {
            + "  " + cliente.isReceberEmail()    + " , "
            + " '" + cliente.getTipo()           + "' , "
            + "  " + cliente.getCidade().getId() + " ) ";
-        JOptionPane.showMessageDialog(null, query);
         Conexao.executar(query);
         
     }

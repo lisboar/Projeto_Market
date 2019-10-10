@@ -6,8 +6,8 @@ package model;
  */
 public class Cliente {
     
-    public static final String PESSOA_FISICA = "pf";
-    public static final String PESSOA_JURIDICA = "pj";
+    public static final String PESSOA_FISICA = "f";
+    public static final String PESSOA_JURIDICA = "j";
     
     private int id;
     private String nome, email, tipo;

@@ -120,6 +120,11 @@ public class FrmCliente extends javax.swing.JInternalFrame {
 
         buttonGroupTipo.add(rbPJ);
         rbPJ.setText("Pessoa Jurídica");
+        rbPJ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbPJActionPerformed(evt);
+            }
+        });
 
         lblCPF.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         lblCPF.setText("CPF");
@@ -304,6 +309,7 @@ public class FrmCliente extends javax.swing.JInternalFrame {
                 pj.setTipo( Cliente.PESSOA_JURIDICA);
                 ClienteDAO.inserir( pj );
             }
+             JOptionPane.showMessageDialog(this, "Cliente "+ nome + " cadastrado com sucesso!");
             limpar();
         }
         
@@ -333,12 +339,12 @@ public class FrmCliente extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_rbPFItemStateChanged
 
-    private void rbPJActionPerformed(java.awt.event.ActionEvent evt) {                                     
+    private void rbPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPJActionPerformed
         lblCPF.setVisible(false);
         txtCPF.setVisible(false);
         lblCNPJ.setVisible(true);
-        txtCNPJ.setVisible(true);   
-    }
+        txtCNPJ.setVisible(true);
+     }//GEN-LAST:event_rbPJActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpar;
